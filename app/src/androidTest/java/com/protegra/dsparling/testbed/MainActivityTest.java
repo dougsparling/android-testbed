@@ -13,11 +13,11 @@ public class MainActivityTest extends ActivityInstrumentationTestCase2<MainActiv
 
     public void testHelloWorld() {
         MainActivity main = getActivity();
-        
+
         View helloWorld = main.findViewById(R.id.hello_world);
         assertAssignableFrom(TextView.class, helloWorld);
 
         String label = ((TextView) helloWorld).getText().toString();
-        assertContainsRegex("hello", label);
+        assertContainsRegex("Hel{2}o", label);
     }
 }
