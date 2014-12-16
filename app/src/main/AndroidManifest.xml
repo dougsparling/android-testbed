@@ -18,4 +18,9 @@
         </activity>
     </application>
 
+    <instrumentation
+        android:name="com.zutubi.android.junitreport.JUnitReportTestRunner"
+        android:targetPackage="com.protegra.dsparling.testbed"
+        android:label="JUnit Tests with Reports for com.protegra.dsparling.testbed" />
+
 </manifest>
