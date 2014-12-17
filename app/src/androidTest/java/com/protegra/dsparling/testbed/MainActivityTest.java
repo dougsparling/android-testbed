@@ -29,21 +29,20 @@ public class MainActivityTest extends ActivityInstrumentationTestCase2<MainActiv
         View helloWorld = main.findViewById(R.id.hello_world);
         assertAssignableFrom(TextView.class, helloWorld);
 
-        String label = ((TextView) helloWorld).getText().toString();
-        assertContainsRegex("Hel{2}o", label);
+        assertContainsRegex("Hel{2}o", ((TextView) helloWorld).getText().toString());
 
         Spoon.screenshot(main, "initial");
 
         clickView(main, helloWorld);
-        assertContainsRegex("Clicked 1 Times", label);
+        assertContainsRegex("Clicked 1 Times", ((TextView) helloWorld).getText().toString());
         Spoon.screenshot(main, "first");
 
         clickView(main, helloWorld);
-        assertContainsRegex("Clicked 2 Times", label);
+        assertContainsRegex("Clicked 2 Times", ((TextView) helloWorld).getText().toString());
         Spoon.screenshot(main, "second");
 
         clickView(main, helloWorld);
-        assertContainsRegex("Clicked 3 Times", label);
+        assertContainsRegex("Clicked 3 Times", ((TextView) helloWorld).getText().toString());
         Spoon.screenshot(main, "third");
     }
 
