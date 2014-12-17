@@ -33,6 +33,7 @@ public class MainActivity extends ActionBarActivity {
             @Override
             public void onClick(View v) {
                 helloWorld.setText(String.format("Was Clicked %d Times!", i));
+                // FIXME: clamp max text size to prevent giant labels
                 helloWorld.setTextSize(helloWorld.getTextSize() + 2.0f);
                 i++;
             }
@@ -55,6 +56,7 @@ public class MainActivity extends ActionBarActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            // TODO: handle
             return true;
         }
 
