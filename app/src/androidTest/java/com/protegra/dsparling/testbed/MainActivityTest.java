@@ -20,8 +20,4 @@ public class MainActivityTest extends ActivityInstrumentationTestCase2<MainActiv
         String label = ((TextView) helloWorld).getText().toString();
         assertContainsRegex("Hel{2}o", label);
     }
-
-    public void testFailureOhNo() {
-        assertTrue("Look around you. What do you see? Maths.", 1 == 2);
-    }
 }
