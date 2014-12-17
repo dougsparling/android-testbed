@@ -1,5 +1,22 @@
 apply plugin: 'com.android.application'
+
+buildscript {
+    repositories {
+        mavenCentral() // for spoon-gradle-plugin
+    }
+    dependencies {
+        classpath 'com.stanfy.spoon:spoon-gradle-plugin:0.14.1'
+    }
+}
+
 apply plugin: 'spoon'
+
+allprojects {
+    repositories {
+        jcenter()
+    }
+}
+
 
 android {
     compileSdkVersion 21
