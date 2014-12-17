@@ -4,6 +4,8 @@ import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
 
 
 public class MainActivity extends ActionBarActivity {
@@ -12,6 +14,17 @@ public class MainActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        final TextView helloWorld = (TextView) findViewById(R.id.hello_world);
+        helloWorld.setOnClickListener(new View.OnClickListener() {
+            int i = 1;
+            @Override
+            public void onClick(View v) {
+                helloWorld.setText(String.format("Was Clicked %d Times!", i));
+                helloWorld.setTextSize(helloWorld.getTextSize() + 2.0f);
+                i++;
+            }
+        });
     }
 
 
