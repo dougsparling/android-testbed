@@ -1,6 +1,7 @@
 package com.protegra.dsparling.testbed;
 
 import android.test.ActivityInstrumentationTestCase2;
+import android.test.UiThreadTest;
 import android.view.View;
 import android.widget.TextView;
 
@@ -23,6 +24,7 @@ public class MainActivityTest extends ActivityInstrumentationTestCase2<MainActiv
         assertContainsRegex("Hel{2}o", label);
     }
 
+    @UiThreadTest
     public void testLabelClicks() {
         MainActivity main = getActivity();
 
