@@ -1,7 +1,6 @@
 package com.protegra.dsparling.testbed;
 
 import android.test.ActivityInstrumentationTestCase2;
-import android.test.UiThreadTest;
 import android.view.View;
 import android.widget.TextView;
 
@@ -24,7 +23,6 @@ public class MainActivityTest extends ActivityInstrumentationTestCase2<MainActiv
         assertContainsRegex("Hel{2}o", label);
     }
 
-    @UiThreadTest
     public void testLabelClicks() {
         MainActivity main = getActivity();
 
@@ -36,17 +34,27 @@ public class MainActivityTest extends ActivityInstrumentationTestCase2<MainActiv
 
         Spoon.screenshot(main, "initial");
 
-        helloWorld.performClick();
+        clickView(main, helloWorld);
         assertContainsRegex("Clicked 1 Times", label);
         Spoon.screenshot(main, "first");
 
-        helloWorld.performClick();
+        clickView(main, helloWorld);
         assertContainsRegex("Clicked 2 Times", label);
         Spoon.screenshot(main, "second");
 
-        helloWorld.performClick();
+        clickView(main, helloWorld);
         assertContainsRegex("Clicked 3 Times", label);
         Spoon.screenshot(main, "third");
+    }
+
+    private void clickView(MainActivity activity, final View view) {
+        activity.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                view.performClick();
+            }
+        });
+        getInstrumentation().waitForIdleSync();
     }
 
 }
