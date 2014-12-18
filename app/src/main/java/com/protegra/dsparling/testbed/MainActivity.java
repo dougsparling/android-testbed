@@ -7,13 +7,25 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
+import com.protegra.dsparling.testbed.time.TimeService;
+
+import java.text.SimpleDateFormat;
+
+import javax.inject.Inject;
+
 
 public class MainActivity extends ActionBarActivity {
+
+    @Inject TimeService timeService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        App.inject(this, this);
+
+        String formattedDate = new SimpleDateFormat("yy/MM/dd").format(timeService.getTime().getTime());
+        ((TextView) findViewById(R.id.date_label)).setText("Date: " + formattedDate);
 
         final TextView helloWorld = (TextView) findViewById(R.id.hello_world);
         helloWorld.setOnClickListener(new View.OnClickListener() {

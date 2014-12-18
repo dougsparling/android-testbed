@@ -23,6 +23,16 @@ public class MainActivityTest extends ActivityInstrumentationTestCase2<MainActiv
         assertContainsRegex("Hel{2}o", label);
     }
 
+    public void testDateLabel() {
+        MainActivity main = getActivity();
+
+        View dateLabel = main.findViewById(R.id.date_label);
+        assertAssignableFrom(TextView.class, dateLabel);
+
+        String label = ((TextView) dateLabel).getText().toString();
+        assertEquals("Date: 85/11/05", label);
+    }
+
     public void testLabelClicks() {
         MainActivity main = getActivity();
 

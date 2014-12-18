@@ -1,7 +1,17 @@
 package com.protegra.dsparling.testbed.time;
 
-/**
- * Created by dsparling on 2014-12-18.
- */
-public class MockTimeService {
+import java.util.Calendar;
+
+public class MockTimeService implements TimeService {
+
+    private final Calendar mockedTime;
+
+    public MockTimeService(Calendar mockedTime) {
+        this.mockedTime = mockedTime;
+    }
+
+    @Override
+    public Calendar getTime() {
+        return mockedTime;
+    }
 }
