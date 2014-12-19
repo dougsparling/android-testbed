@@ -64,7 +64,7 @@
         <module name="NeedBraces"></module>
         <module name="RightCurly"></module>
         <module name="AvoidInlineConditionals"></module>
-        <module name="DoubleCheckedLocking"></module>
+        <!--<module name="DoubleCheckedLocking"></module>-->
         <module name="EmptyStatement"></module>
         <module name="EqualsHashCode"></module>
         <module name="HiddenField"></module>
