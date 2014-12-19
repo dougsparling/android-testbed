@@ -20,12 +20,12 @@ android {
 
     defaultConfig {
         applicationId "com.protegra.dsparling.testbed"
-        minSdkVersion 7
+        minSdkVersion 8
         targetSdkVersion 21
         versionCode 1
         versionName "1.0"
 
-        testInstrumentationRunner  "com.zutubi.android.junitreport.JUnitReportTestRunner"
+        testInstrumentationRunner "com.google.android.apps.common.testing.testrunner.GoogleInstrumentationTestRunner"
     }
     buildTypes {
         release {
@@ -43,6 +43,10 @@ android {
         live {
         }
     }
+    // multiple test dependencies share this file...
+    packagingOptions {
+        exclude 'LICENSE.txt'
+    }
 }
 
 dependencies {
@@ -52,6 +56,9 @@ dependencies {
 
     provided 'com.squareup.dagger:dagger-compiler:1.2.2'
 
+    androidTestCompile('com.jakewharton.espresso:espresso:1.1-r3') {
+        exclude group: 'com.squareup.dagger'
+    }
     androidTestCompile fileTree(dir: 'testLibs', include: ['*.jar'])
     androidTestCompile 'com.squareup.spoon:spoon-client:1.1.1'
 }

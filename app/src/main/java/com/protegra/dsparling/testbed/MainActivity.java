@@ -2,6 +2,7 @@ package com.protegra.dsparling.testbed;
 
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.util.TypedValue;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -34,7 +35,8 @@ public class MainActivity extends ActionBarActivity {
             public void onClick(View v) {
                 helloWorld.setText(String.format("Was Clicked %d Times!", i));
                 // FIXME: clamp max text size to prevent giant labels
-                helloWorld.setTextSize(helloWorld.getTextSize() + 2.0f);
+                float textSizePx = helloWorld.getTextSize() + 2.0f;
+                helloWorld.setTextSize(TypedValue.COMPLEX_UNIT_SP, textSizePx);
                 i++;
             }
         });
