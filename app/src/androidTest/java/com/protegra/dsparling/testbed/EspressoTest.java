@@ -7,12 +7,12 @@ import android.widget.TextView;
 import org.hamcrest.BaseMatcher;
 import org.hamcrest.Description;
 
-import static com.google.android.apps.common.testing.ui.espresso.Espresso.*;
-import static com.google.android.apps.common.testing.ui.espresso.matcher.ViewMatchers.*;
-import static com.google.android.apps.common.testing.ui.espresso.action.ViewActions.*;
-import static com.google.android.apps.common.testing.ui.espresso.assertion.ViewAssertions.*;
+import static android.support.test.espresso.Espresso.*;
+import static android.support.test.espresso.matcher.ViewMatchers.*;
+import static android.support.test.espresso.action.ViewActions.*;
+import static android.support.test.espresso.assertion.ViewAssertions.*;
 
-public class EspressoTest extends ActivityInstrumentationTestCase2 {
+public class EspressoTest extends ActivityInstrumentationTestCase2<MainActivity> {
 
     public EspressoTest() {
         super(MainActivity.class);

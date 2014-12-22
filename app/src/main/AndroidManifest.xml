@@ -20,8 +20,8 @@
     </application>
 
     <instrumentation
-        android:name="com.google.android.apps.common.testing.testrunner.GoogleInstrumentationTestRunner"
-        android:targetPackage="com.protegra.dsparling.testbed"
+        android:name="android.support.test.runner.AndroidJUnitRunner"
+        android:targetPackage="om.protegra.dsparling.testbed"
         android:label="Espresso tests for com.protegra.dsparling.testbed"/>
 
 </manifest>
