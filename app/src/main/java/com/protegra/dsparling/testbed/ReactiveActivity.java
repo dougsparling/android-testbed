@@ -2,6 +2,7 @@ package com.protegra.dsparling.testbed;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.TextView;
 
 import java.util.concurrent.TimeUnit;
@@ -24,10 +25,13 @@ public class ReactiveActivity extends Activity {
     }
 
     private static Observable<Pair<Long, Long>> DATA =
-            Observable.interval(1, TimeUnit.SECONDS)
-                .zipWith(Observable.interval(2, TimeUnit.SECONDS), (x, y) -> new Pair<>(x, y))
-                .subscribeOn(Schedulers.newThread())
-                .observeOn(AndroidSchedulers.mainThread());
+        Observable.interval(1, TimeUnit.SECONDS)
+                .zipWith(Observable.interval(5, TimeUnit.MILLISECONDS)
+                            .map(x -> {Log.d("rx", "observed (before backpressure drop) " + x); return x; })
+                            .onBackpressureDrop()
+                            .map(x -> {Log.d("rx", "observed (after backpressure drop) " + x); return x; }),
+                    (x,y) -> new Pair<>(x, y))
+            .observeOn(AndroidSchedulers.mainThread());
 
     private Subscription dataSub;
 
@@ -40,8 +44,8 @@ public class ReactiveActivity extends Activity {
     @Override
     protected void onResume() {
         super.onResume();
-        dataSub = DATA.subscribe(num -> {
-            String label = String.format("%d %d", num.first, num.second);
+        dataSub = DATA.subscribe(pair -> {
+            String label = String.format("%d %d", pair.first, pair.second);
             ((TextView) findViewById(R.id.text)).setText(label);
         });
     }
