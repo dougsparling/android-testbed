@@ -17,6 +17,7 @@
                 <category android:name="android.intent.category.MONKEY" />
             </intent-filter>
         </activity>
+        <activity android:name=".ReactiveActivity" android:label="Reactive" />
     </application>
 
     <instrumentation

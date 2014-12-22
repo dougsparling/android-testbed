@@ -7,16 +7,23 @@ buildscript {
     }
     dependencies {
         classpath 'com.stanfy.spoon:spoon-gradle-plugin:0.14.1'
+        classpath 'me.tatarka:gradle-retrolambda:2.5.0'
     }
 }
 
 apply plugin: 'spoon'
 apply plugin: 'checkstyle'
 apply plugin: 'findbugs'
+apply plugin: 'me.tatarka.retrolambda'
 
 android {
     compileSdkVersion 21
     buildToolsVersion "21.1.2"
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
 
     defaultConfig {
         applicationId "com.protegra.dsparling.testbed"
@@ -27,6 +34,7 @@ android {
 
         testInstrumentationRunner "com.google.android.apps.common.testing.testrunner.GoogleInstrumentationTestRunner"
     }
+
     buildTypes {
         release {
             minifyEnabled false
@@ -36,6 +44,7 @@ android {
             testCoverageEnabled true
         }
     }
+
     productFlavors {
         mock {
         }
@@ -43,6 +52,7 @@ android {
         live {
         }
     }
+
     // multiple test dependencies share this file...
     packagingOptions {
         exclude 'LICENSE.txt'
@@ -53,6 +63,9 @@ dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile 'com.android.support:appcompat-v7:21.0.3'
     compile 'com.squareup.dagger:dagger:1.2.2'
+
+    compile 'io.reactivex:rxjava:1.0.3'
+    compile 'io.reactivex:rxandroid:0.23.0'
 
     provided 'com.squareup.dagger:dagger-compiler:1.2.2'
 
