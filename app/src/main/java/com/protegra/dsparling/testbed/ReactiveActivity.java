@@ -27,9 +27,8 @@ public class ReactiveActivity extends Activity {
     private static Observable<Pair<Long, Long>> DATA =
         Observable.interval(1, TimeUnit.SECONDS)
                 .zipWith(Observable.interval(5, TimeUnit.MILLISECONDS)
-                            .map(x -> {Log.d("rx", "observed (before backpressure drop) " + x); return x; })
-                            .onBackpressureDrop()
-                            .map(x -> {Log.d("rx", "observed (after backpressure drop) " + x); return x; }),
+                            .cache()
+                            .onBackpressureDrop(),
                     (x,y) -> new Pair<>(x, y))
             .observeOn(AndroidSchedulers.mainThread());
 
