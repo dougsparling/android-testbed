@@ -2,7 +2,6 @@ package com.protegra.dsparling.testbed;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.TextView;
 
 import java.util.concurrent.TimeUnit;
@@ -10,7 +9,6 @@ import java.util.concurrent.TimeUnit;
 import rx.Observable;
 import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;
-import rx.schedulers.Schedulers;
 
 public class ReactiveActivity extends Activity {
 

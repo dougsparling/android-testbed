@@ -14,6 +14,7 @@ import java.util.regex.Pattern;
 import rx.Observable;
 import rx.Subscription;
 import rx.android.observables.ViewObservable;
+import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.FuncN;
 
 public class FormActivity extends ActionBarActivity {
@@ -35,17 +36,20 @@ public class FormActivity extends ActionBarActivity {
     protected void onResume() {
         super.onResume();
 
-        subscription = Observable.combineLatest(Arrays.asList(
-                        observeNumbers(R.id.first_field),
-                        observeNumbers(R.id.second_field),
-                        Observable.interval(1, TimeUnit.SECONDS)),
-                new FuncN<Long>() {
-                    @Override
-                    public Long call(Object... args) {
-                        return 0L;
-                    }
-                }
-                        .subscribe(this::updateSum);
+//        subscription = Observable.combineLatest(Arrays.asList(
+//                        observeNumbers(R.id.first_field),
+//                        observeNumbers(R.id.second_field),
+//                        Observable.interval(1, TimeUnit.SECONDS)))
+//                        .subscribe(this::updateSum);
+
+        subscription = Observable.combineLatest(
+                observeNumbers(R.id.first_field),
+                observeNumbers(R.id.second_field),
+                Observable.interval(1, TimeUnit.SECONDS),
+                (Long  i, Long j, Long k) -> i + j + k)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(this::updateSum);
+
         //array -> {List.list(array).foldLeft((e, sum) -> {((Long)e) + sum}, 0L)})
     }
 
